@@ -3,7 +3,6 @@ info:
   title: Jobs API
   contact: {}
   version: '1.0'
-jsonSchemaDialect: https://json-schema.org/draft/2020-12/schema
 servers:
 - url: https://jobs-api-01.up.railway.app/api/v1
   variables: {}
@@ -21,7 +20,6 @@ paths:
           application/json:
             schema:
               allOf:
-              - $ref: '#/components/schemas/RegisterUserRequest'
               - examples:
                 - name: Peter Lannister
                   email: peterlannister3@gmail.com
@@ -54,7 +52,6 @@ paths:
           application/json:
             schema:
               allOf:
-              - $ref: '#/components/schemas/LoginUserRequest'
               - examples:
                 - email: peterlannister3@gmail.com
                   password: Blaugrana20$
@@ -97,7 +94,6 @@ paths:
           application/json:
             schema:
               allOf:
-              - $ref: '#/components/schemas/CreateJobRequest'
               - examples:
                 - company: Meta
                   position: Frontend Developer
@@ -151,7 +147,6 @@ paths:
           application/json:
             schema:
               allOf:
-              - $ref: '#/components/schemas/UpdateJobRequest'
               - examples:
                 - company: Google
                   position: Backend Engineer Intern
@@ -186,76 +181,6 @@ paths:
       deprecated: false
       security:
       - bearer: []
-components:
-  schemas:
-    RegisterUserRequest:
-      title: RegisterUserRequest
-      required:
-      - name
-      - email
-      - password
-      - confirmPassword
-      type: object
-      properties:
-        name:
-          type: string
-        email:
-          type: string
-        password:
-          type: string
-        confirmPassword:
-          type: string
-      examples:
-      - name: Peter Lannister
-        email: peterlannister3@gmail.com
-        password: Blaugrana20$
-        confirmPassword: Blaugrana20$
-    LoginUserRequest:
-      title: LoginUserRequest
-      required:
-      - email
-      - password
-      type: object
-      properties:
-        email:
-          type: string
-        password:
-          type: string
-      examples:
-      - email: peterlannister3@gmail.com
-        password: Blaugrana20$
-    CreateJobRequest:
-      title: CreateJobRequest
-      required:
-      - company
-      - position
-      type: object
-      properties:
-        company:
-          type: string
-        position:
-          type: string
-      examples:
-      - company: Meta
-        position: Frontend Developer
-    UpdateJobRequest:
-      title: UpdateJobRequest
-      required:
-      - company
-      - position
-      type: object
-      properties:
-        company:
-          type: string
-        position:
-          type: string
-      examples:
-      - company: Google
-        position: Backend Engineer Intern
-  securitySchemes:
-    bearer:
-      type: http
-      scheme: bearer
 security: []
 tags:
 - name: Auth
