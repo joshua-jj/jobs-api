@@ -28,5 +28,8 @@
   },
   "devDependencies": {
     "node": "^2.0.9"
+  },
+  "engines": {
+    "node": "18.x"
   }
 }
