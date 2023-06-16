@@ -1,5 +1,5 @@
 {
-  "name": "06-jobs-api",
+  "name": "jobs-api",
   "version": "1.0.0",
   "description": "",
   "main": "app.js",
@@ -27,7 +27,7 @@
     "yamljs": "^0.3.0"
   },
   "devDependencies": {
-    "node": "^2.0.9"
+    "nodemon": "^2.0.9"
   },
   "engines": {
     "node": "18.x"
