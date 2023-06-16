@@ -2,12 +2,20 @@ import dotenv from 'dotenv';
 dotenv.config();
 import 'express-async-errors';
 import express from 'express';
+import fs from 'fs';
 
-// extra packages
+// extra security packages
 import helmet from 'helmet';
 import cors from 'cors';
 import xss from 'xss-clean';
 import rateLimit from 'express-rate-limit';
+
+// Swagger
+import swaggerUi from 'swagger-ui-express';
+import YAML from 'yaml';
+
+const file = fs.readFileSync('./swagger.yaml', 'utf8');
+const swaggerDocument = YAML.parse(file)
 
 const app = express();
 
@@ -40,9 +48,9 @@ app.use(cors());
 app.use(xss());
 
 app.get('/', (req, res) => {
-  res.send('Welcome to jobs api');
+  res.send('<h1>Welcome to jobs api</h1><a href="/api-docs">Documentation</a>');
 });
-
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 // routes
 app.use('/api/v1/auth', authRouter);
 app.use('/api/v1/jobs', authenticateUser, jobsRouter);
